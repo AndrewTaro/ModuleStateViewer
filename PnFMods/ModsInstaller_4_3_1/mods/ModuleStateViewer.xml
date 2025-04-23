@@ -3,7 +3,7 @@
 		<root_Node>
 			<find_Node tag="elementList">
 				<insert>
-					<element class="lesta.unbound2.UbElement" elementName="ModuleStateViewer" name="unbound2ModuleStateViewer" url="battle_stats.swf">
+					<element class="lesta.unbound2.UbElement" elementName="ModuleStateViewer" name="unbound2ModuleStateViewer">
 						<properties hitTest="false"/>
 					</element>
 					<attrs>
