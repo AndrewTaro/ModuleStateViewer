@@ -1,15 +1,16 @@
 (def element ModuleStateViewer () layout=true
 	(scope
-		#camera and data component
+		# Camera and data component
 		(var cameraEntity:gfx = "$datahub.getSingleEntity(CC.camera)")
 		(var dataComponent:gfx = "cameraEntity.dataComponent" (event "cameraEntity.evAdded") (event "cameraEntity.evRemoved"))
 		(var entityIds:array = "dataComponent ? dataComponent.data : []" (event "dataComponent.evDataChanged"))
-		#(var altVision:bool = "cameraEntity.camera.altVision" (event "cameraEntity.camera.evAltVisionChanged"))
+
+		(macro IS_SPECTATOR_MODE)
 	)
 
 	(block
-		#(bind visible "altVision")
 		(controller $Repeat renderer='MSV_ModuleViewer'
+			(bind enabled "!isSpectatorTrainingMode")
 			(bind count "entityIds ? entityIds.length : 0" (event "dataComponent.evChanged"))
 			(args "entityIds[$index]")
 		)
