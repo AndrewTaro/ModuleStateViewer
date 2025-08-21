@@ -4,14 +4,13 @@
 		(var cameraEntity:gfx = "$datahub.getSingleEntity(CC.camera)")
 		(var dataComponent:gfx = "cameraEntity.dataComponent" (event "cameraEntity.evAdded") (event "cameraEntity.evRemoved"))
 		(var entityIds:array = "dataComponent ? dataComponent.data : []" (event "dataComponent.evDataChanged"))
-
-		(macro IS_SPECTATOR_MODE)
+		(var counts:number = "entityIds ? entityIds.length : 0")
 	)
 
 	(block
 		(controller $Repeat renderer='MSV_ModuleViewer'
-			(bind enabled "!isSpectatorTrainingMode")
-			(bind count "entityIds ? entityIds.length : 0" (event "dataComponent.evChanged"))
+			(bind enabled "counts")
+			(bind count "counts")
 			(args "entityIds[$index]")
 		)
 	)
