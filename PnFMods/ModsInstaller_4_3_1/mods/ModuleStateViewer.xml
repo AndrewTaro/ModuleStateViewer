@@ -8,7 +8,7 @@
 					</element>
 					<attrs>
 						<do_if_not_exist tag="element" type="name" name="unbound2ModuleStateViewer"/>
-						<position insert="after_node" tag="element" attr_1="elementName" value_1="MainHud"/>
+						<position insert="before_node" tag="element" attr_1="elementName" value_1="MarkersContainer"/>
 					</attrs>
 				</insert>
 			</find_Node>
