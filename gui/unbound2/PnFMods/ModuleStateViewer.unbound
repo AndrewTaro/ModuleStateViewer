@@ -6,8 +6,8 @@
 	DETONATED	: 4,
 	IDLE		: 10,
 
-	CRITICAL_STATES	: [2, 10],
-	TIMED_STATES	: [2, 10]
+	CRITICAL_STATES	: [2, 3, 10],
+	TIMED_STATES	: [2, 3, 10]
 })
 
 (def constant MSV_MODULE_MARKER_SETTINGS {
@@ -146,11 +146,14 @@
 												 				  : 24px
 												 : 5px
 		")
-		(var iconState:str = "isNormal ? 'normal' : isCrit ? 'crit' : 'dead'") # Repaint "dead" image for Non-crit states
+		(var iconState:str = "	isDestroyed ? 'dead' :
+								isCrit		? 'crit'
+											: 'normal'
+		")
 		(var iconPath:str = "_isCloseToCamera	? 'url:../ttaro_module_state_viewer/' + iconType +'_' + iconState + '.png'
 												: 'url:../battle_hud/markers/torpedoes/icon_torpedo_not_dangerous_enemy.png'
 		")
-		(var isVisible:bool = "(_isCloseToCamera || !isNormal)")
+		(var isVisible:bool = "(_isCloseToCamera || !isNormal) && !(isATBA && isNormal && hpPercent == 1)")
 	)
 
 	(bind visible "isVisible")
