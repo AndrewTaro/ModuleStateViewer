@@ -1,3 +1,4 @@
+
 (def constant MSV_COMPONENT_KEY 'modModuleStateViewer')
 (def constant MSV_COMPONENT_KEY_ZINDEX_PREFIX 'modModuleStateViewerZIndex_')
 
@@ -21,6 +22,7 @@
 
 (def element ModuleStateViewer () layout=true
 	(scope
+
 		(var entityWatcher:gfx = "$datahub.getPrimWatcher(CC.mods_DataComponent, MSV_COMPONENT_KEY)")
 		(var entity:gfx = "entityWatcher.entity" (event "entityWatcher.event"))
 		(var dataComponent:gfx = "entity ? entity.mods_DataComponent : null")
@@ -45,19 +47,25 @@
 		(event evPositionUpdate)
 		(var _markerEntity:gfx = "$datahub.getEntity(_entityId)")
 
+
 		(var dataComponent:gfx = "_markerEntity && _markerEntity.hasComponent(CC.mods_DataComponent) ? _markerEntity.mods_DataComponent : null" (event "_markerEntity.evAdded")(event "_markerEntity.evRemoved"))
 		(var moduleData:dict = "dataComponent ? dataComponent.data : null" (event "dataComponent.evDataChanged"))
 		(var state:number = "'state' in moduleData ? moduleData.state : -1")
 		(var isTimerActive:bool = "isIn(state, MSV_MODULE_STATE.TIMED_STATES)")
+
+
+
 
 		(var zIndexWatcher:gfx = "$datahub.getPrimWatcher(CC.mods_DataComponent, MSV_COMPONENT_KEY_ZINDEX_PREFIX + toString(_entityId))")
 		(var zIndexEntity:gfx = "zIndexWatcher.entity" (event "zIndexWatcher.event"))
 		(var zIndexComponent:gfx = "zIndexEntity ? zIndexEntity.mods_DataComponent : null")
 		(var zIndex:number = "zIndexComponent && null != zIndexComponent.data ? zIndexComponent.data.zIndex : 0" (event "zIndexComponent.evDataChanged"))
 
+
 		(macro GET_MARKER_ENTITY_COMPONENT 'distance')
 		(var distanceIndex:number = "distanceComponent ? distanceComponent.distanceIndex : -1" (event "distanceComponent.evDistanceIndexChanged"))
 		(var isCloseToCamera:bool = "distanceIndex == DistanceType.NEAR")
+
 
 		(var camera:gfx = "$datahub.getSingleComponent(CC.camera)")
 		(var altVision:bool = "camera.altVision" (event "camera.evAltVisionChanged"))
@@ -100,7 +108,9 @@
 
 (def element MSV_ModuleItem(_moduleData:dict, _isCloseToCamera:bool, _heightOffset:number=0) layout=true
 	(scope
+
 		(var timer:gfx = "$datahub.getSingleComponent(CC.timer)")
+
 
 		(var type:number = "'type' in _moduleData ? _moduleData.type : -1")
 		(var state:number = "'state' in _moduleData ? _moduleData.state : -1")
@@ -116,8 +126,10 @@
 
 		(var isATBA:bool = "type == 2")
 
+
 		(var critTimeLeft:number = "isTimerActive ? critTimer - timer.currentTime : 0" (event "timer.evFrequent"))
 		(var critTimeLeftStr:str = "isTimerActive ? countdownFormat(critTimeLeft) : ' '")
+
 
 		(var stateColor:number = "	isNormal	? SC.Ui_styles.SERVICE_COLORS.WHITE :
 									isDamaged	? SC.Ui_styles.SERVICE_COLORS.GREEN :
@@ -131,6 +143,7 @@
 													: 0xff4b1d
 		")
 		(var isTextVisible:bool = "_isCloseToCamera")
+
 
 		(var currentHPText:str = "formatFloatingPoint(currentHP, 0)")
 
@@ -159,6 +172,7 @@
 		(marginTop = -50%)
 	)
 
+
 	(block
 		(controller $Instance
 			(renderer = 'MSV_ModuleViewerTextItem')
@@ -170,6 +184,7 @@
 			)
 		)
 	)
+
 	(block
 		(style
 			(bind width "iconSize")
@@ -180,6 +195,7 @@
 			(pivotY = 50%)
 		)
 	)
+
 	(block
 		(controller $Instance
 			(renderer = 'MSV_ModuleViewerTextItem')
@@ -191,6 +207,7 @@
 			)
 		)
 	)
+
 	(block
 		(bind visible "_heightOffset")
 		(style
