@@ -5,6 +5,6 @@
   <ubMountInBattle unbound="2"
                    rootElementId="ModuleStateViewer"
                    name="unbound2ModuleStateViewer"
-                   hitTest="false"
+                   hitTest="true"
                    before="MarkersContainer"/>
 </mod>
