@@ -162,7 +162,7 @@
 		(block
 			(class $FullsizeAbsolute)
 			(style
-				(backgroundImage = "'url:../ttaro_module_state_viewer/panel_hull.png'")
+				(backgroundImage = "'url:../ttaro/module_state_viewer/panel_hull.png'")
 				(backgroundSize = "fill")
 			)
 		)
@@ -261,7 +261,7 @@
 			(style
 				(width = 18px) (height = 18px)
 				(marginRight = 3px)
-				(bind backgroundImage "'url:../ttaro_module_state_viewer/panel_' + icon + '_crit.png'")
+				(bind backgroundImage "'url:../ttaro/module_state_viewer/panel_' + icon + '_crit.png'")
 				(backgroundSize = "fill")
 				(filters
 					(dropShadow
@@ -318,7 +318,7 @@
 											: 'normal'
 		")
 
-		(var iconPath:str = "markerSettings ? 'url:../ttaro_module_state_viewer/panel_' + markerSettings.icon + '_' + iconState + '.png' : ''")
+		(var iconPath:str = "markerSettings ? 'url:../ttaro/module_state_viewer/panel_' + markerSettings.icon + '_' + iconState + '.png' : ''")
 		(var dotState:str = "	isDestroyed		? 'dead' :
 								isCrit			? 'crit' :
 								hpPercent > 0.8	? 'ok' :
@@ -343,7 +343,7 @@
 			(position = "absolute")
 			(left = -3px) (top = -3px)
 			(width = 6px) (height = 6px)
-			(bind backgroundImage "'url:../ttaro_module_state_viewer/panel_dot_' + dotState + '.png'")
+			(bind backgroundImage "'url:../ttaro/module_state_viewer/panel_dot_' + dotState + '.png'")
 		)
 	)
 
@@ -501,7 +501,7 @@
 								isCrit		? 'crit'
 											: 'normal'
 		")
-		(var iconPath:str = "_isCloseToCamera	? 'url:../ttaro_module_state_viewer/' + iconType +'_' + iconState + '.png'
+		(var iconPath:str = "_isCloseToCamera	? 'url:../ttaro/module_state_viewer/' + iconType +'_' + iconState + '.png'
 												: 'url:../battle_hud/markers/torpedoes/icon_torpedo_not_dangerous_enemy.png'
 		")
 		(var isVisible:bool = "(_isCloseToCamera || !isNormal) && !(isATBA && isNormal && hpPercent == 1)")
